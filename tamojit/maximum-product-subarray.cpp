@@ -1,9 +1,6 @@
 class Solution {
 public:
     long long prod[100010];
-    Solution() {
-        for(int i = 0; i < 100010; i++) prod[i] = 1;
-    }
     long long maxProduct(vector<int>& nums, int start, int end) {
         int n = nums.size();
         prod[start] = nums[start];
