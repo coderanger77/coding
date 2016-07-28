@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<string> dir;
+    vector<string> result;
+    vector<string> letterCombinations(string digits) {
+        
+        if(digits.size()==0)
+        {
+            return result;
+        }
+        
+        dir.push_back("abc");
+        dir.push_back("def");
+        dir.push_back("ghi");
+        dir.push_back("jkl");
+        dir.push_back("mno");
+        dir.push_back("pqrs");//
+        dir.push_back("tuv");
+        dir.push_back("wxyz");//
+        string s;
+        printRecursive(0,digits,s);
+        return result;
+    }
+    
+     void printRecursive(int i,string p,string s)
+    {
+        
+        if(i==p.length())
+        {
+            result.push_back(s);
+            return;
+        }else{
+            printRecursive(i+1,p,s+dir[p[i]-'0'-2][0]);
+            printRecursive(i+1,p,s+dir[p[i]-'0'-2][1]);
+            printRecursive(i+1,p,s+dir[p[i]-'0'-2][2]);
+            if(p[i]=='7' || p[i]=='9')
+            {
+                printRecursive(i+1,p,s+dir[p[i]-'0'-2][3]);    
+            }
+        }
+    }
+    
+};
