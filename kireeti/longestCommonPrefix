@@ -1,0 +1,44 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        
+        if(strs.size()==0)
+        {
+            return "";
+        }
+        
+        int minLength=INT_MAX;
+        for(int i=0;i<strs.size();i++)
+        {
+            int x=strs[i].length();
+           // cout<<strs[i].length();
+            minLength=min(minLength,x);
+        }
+       // cout<<minLength;
+        int i=0;
+        char current;
+        for(;i<minLength;i++)
+        {
+            int flag=0;
+            current=strs[0][i];
+            for(int j=0;j<strs.size();j++)
+            {
+                if(current!=strs[j][i])
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            
+            if(flag)
+            {
+                break;
+            }
+            
+        }
+        
+        //cout<<i;
+        string result(strs[0],0,i);
+        return result;;
+    }
+};
