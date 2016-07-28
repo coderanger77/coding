@@ -1,0 +1,52 @@
+class Solution {
+public:
+    static int comp(pair<int,string> a,pair<int,string> b)
+    {
+        return a.second<b.second;
+    }
+    
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        
+        
+        
+        vector<vector<string>> x;
+        if(strs.size()==0)
+        {
+            return x;
+        }
+        vector< pair<int,string> > tempStrs;
+        
+        for(int i=0;i<strs.size();i++)
+        {
+           // cout<<strs[i]<<endl;
+            string temp(strs[i],0,strs[i].length());
+           // cout<<i<<"-->"<<temp<<endl;
+            sort( temp.begin(),temp.end()) ;
+            
+            tempStrs.push_back(make_pair( i,temp));
+        }
+        
+        sort(tempStrs.begin(),tempStrs.end(),comp);
+       
+       for(int i=0;i<tempStrs.size();i++)
+       {
+           cout<<tempStrs[i].second<<"-->"<<tempStrs[i].first<<endl;
+       }
+        
+        for(int i=0;i<tempStrs.size();i++)    
+        {
+           // cout<<i<<endl;
+            vector<string> temp;
+            temp.push_back(strs[tempStrs[i].first]);
+           // cout<<strs[tempStrs[i].first]<<endl;
+            while(i+1<tempStrs.size() && tempStrs[i].second==tempStrs[i+1].second )
+            {
+            temp.push_back(strs[tempStrs[i+1].first]);    
+            i++;
+            }
+            x.push_back(temp);
+        }
+        
+        return x;
+    }
+};
